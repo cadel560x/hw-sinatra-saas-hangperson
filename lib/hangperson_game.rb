@@ -50,6 +50,16 @@ class HangpersonGame
   end
   
   
+  def check_win_or_lose
+    counter = 0
+    return :lose if @wrong_guesses.length >= 7
+      @word.each_char do |letter|
+        counter += 1 if @guesses.include? letter
+      end
+      if counter == @word.length then :win
+      else :play end
+  end
+  
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
