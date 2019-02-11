@@ -19,8 +19,19 @@ class HangpersonGame
   def guess(char)
     
     if char =~ /[[:alpha:]]/
-      
-      
+      char.downcase!
+        if @word.include? char and !@guesses.include? char
+          @guesses.concat char
+          return true
+        elsif !@wrong_guesses.include? char and !@word.include? char
+          @wrong_guesses.concat char
+          return true
+        else
+          return false
+        end
+      else
+        char = :invalid
+        raise ArgumentError
     end
     
   end
